@@ -1,4 +1,20 @@
-/* ==========================================================================
+/* FEEDBACK VISUAL E INTERATIVIDADE (Efeito ao passar o mouse) */
+.elemento-card:hover {
+    transform: translateY(-8px); /* Elevação suave */
+    border-color: var(--gold-primary); /* Brilho na borda */
+    background-color: var(--bg-card-hover); /* Mudança sutil de fundo */
+    box-shadow: 0 12px 25px rgba(222, 188, 122, 0.15); /* Sombra dourada */
+}
+
+/* RESPONSIVIDADE (Ajuste automático para telas menores) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.6rem; /* Diminui o título no celular para não quebrar */
+    }
+    .elementos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Reorganiza os cards dos elementos em colunas menores */
+    }
+}/* ==========================================================================
    VARIÁVEIS DE CORES & PALETA GENSHIN IMPACT
    ========================================================================== */
 :root {
