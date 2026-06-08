@@ -4,186 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genshin Impact - Explore Teyvat</title>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Z_Vll5FUxq8?si=jJW86EWEreB_ojp0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Reset de estilos básicos */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0c1220;
-            color: #f4f6f9;
-            line-height: 1.6;
-        }
-        /* Cabeçalho / Hero Banner */
-        header {
-            background: linear-gradient(rgba(12, 18, 32, 0.7), #0c1220), url('https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20200427/2020042721081689567.png') no-repeat center center/cover;
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            border-bottom: 3px solid #debc7a;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            color: #debc7a;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Container Principal */
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* Seções */
-        section {
-            margin-bottom: 60px;
-        }
-
-        h2 {
-            color: #debc7a;
-            border-bottom: 2px solid #debc7a;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        /* Grid de Elementos */
-        .elementos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .elemento-card {
-            background-color: #162033;
-            border: 1px solid #253552;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .elemento-card:hover {
-            transform: translateY(-5px);
-            border-color: #debc7a;
-        }
-
-        .elemento-card h3 {
-            margin-bottom: 8px;
-        }
-
-        /* Cores temáticas para os elementos */
-        .anemo { color: #73f5ff; }
-        .geo { color: #ffe680; }
-        .electro { color: #e085ff; }
-        .dendro { color: #a3ff85; }
-        .hydro { color: #4cc9ff; }
-        .pyro { color: #ff6b6b; }
-        .cryo { color: #9cf5ff; }
-        /* Rodapé */
-        footer {
-            background-color: #060911;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #7a8b9e;
-            border-top: 1px solid #162033;
-        }
-
-        footer a {
-            color: #debc7a;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            header p { font-size: 1rem; }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Banner Superior -->
     <header>
         <h1>Genshin Impact</h1>
         <p>Prepare-se para explorar Teyvat, um mundo vasto cheio de vida e fluxos de energia elemental.</p>
     </header>
 
-    <!-- Conteúdo da Página -->
     <div class="container">
         
-        <!-- Sobre o Jogo -->
         <section id="sobre">
             <h2>Sobre o Jogo</h2>
             <p>Genshin Impact é um RPG de ação de mundo aberto desenvolvido pela miHoYo (HoYoverse). No jogo, você assume o papel do "Viajante", que acorda em um mundo desconhecido chamado Teyvat após ser separado de seu irmão gêmeo. Para reencontrá-lo, você deve dominar os elementos e buscar respostas junto aos Deuses de cada nação (os Arcontes).</p>
         </section>
 
-        <!-- Os Sete Elementos -->
         <section id="elementos">
             <h2>Os Elementos de Teyvat</h2>
             <p>A jogabilidade gira em torno do combate e da exploração usando reações elementais. Existem sete elementos diferentes controlados pelos habitantes deste mundo:</p>
             
             <div class="elementos-grid">
-                <div class="elemento-card">
-                    <h3 class="pyro">Pyro</h3>
-                    <p>Fogo</p>
-                </div>
-                <div class="elemento-card">
-                    <h3 class="hydro">Hydro</h3>
-                    <p>Água</p>
-                </div>
-                <div class="elemento-card">
-                    <h3 class="anemo">Anemo</h3>
-                    <p>Vento</p>
-                </div>
-                <div class="elemento-card">
-                    <h3 class="electro">Electro</h3>
-                    <p>Eletricidade</p>
-                </div>
-                <div class="elemento-card">
-                    <h3 class="dendro">Dendro</h3>
-                    <p>Natureza</p>
-                </div>
-                <div class="elemento-card">
-                    <h3 class="cryo">Cryo</h3>
-                    <p>Gelo</p>
-                </div>
-                <div class="elemento-card">
-                    <h3 class="geo">Geo</h3>
-                    <p>Terra</p>
-                </div>
+                <div class="elemento-card"><h3 class="pyro">Pyro</h3><p>Fogo</p></div>
+                <div class="elemento-card"><h3 class="hydro">Hydro</h3><p>Água</p></div>
+                <div class="elemento-card"><h3 class="anemo">Anemo</h3><p>Vento</p></div>
+                <div class="elemento-card"><h3 class="electro">Electro</h3><p>Eletricidade</p></div>
+                <div class="elemento-card"><h3 class="dendro">Dendro</h3><p>Natureza</p></div>
+                <div class="elemento-card"><h3 class="cryo">Cryo</h3><p>Gelo</p></div>
+                <div class="elemento-card"><h3 class="geo">Geo</h3><p>Terra</p></div>
             </div>
         </section>
 
-        <!-- Nações Principais -->
+        <section id="video-trailer" style="text-align: center;">
+            <h2>Assista ao Trailer</h2>
+            <p>Confira o visual impressionante e a jogabilidade de Genshin Impact no vídeo promocional abaixo:</p>
+            
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Z_Vll5FUxq8?si=jJW86EWEreB_ojp0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+
         <section id="nacoes">
             <h2>Principais Nações Iniciais</h2>
             <p>Sua jornada começa em duas grandes regiões vizinhas, cada uma inspirada em culturas do nosso próprio mundo:</p>
@@ -195,7 +53,6 @@
 
     </div>
 
-    <!-- Rodapé -->
     <footer>
         <p>Página criada para fins demonstrativos sobre Genshin Impact.</p>
         <p>Visite o site oficial em <a href="https://genshin.hoyoverse.com" target="_blank">genshin.hoyoverse.com</a></p>
