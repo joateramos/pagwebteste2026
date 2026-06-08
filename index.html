@@ -2,51 +2,96 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <!-- RESPONSIVIDADE BASE: Adaptação para qualquer tamanho de tela -->
+    <!-- RESPONSIVIDADE BASE: Configura o navegador do celular para ajustar a escala da página -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact - Comunidade Teyvat</title>
+    <title>Genshin Impact - Explore Teyvat</title>
     
     <style>
         /* ==========================================================================
-           1. VARIÁVEIS DE COR E ACESSIBILIDADE (UX & Contraste)
+           1. VARIÁVEIS DE COR E ACESSIBILIDADE (Princípio de Contraste e UX)
            ========================================================================== */
         :root {
-            --bg-principal: #0c1220;    
-            --bg-card: #162033;         
-            --bg-card-hover: #1c2942;   
-            --dourado-titulo: #debc7a;  
-            --texto-claro: #f4f6f9;     
-            --texto-mutado: #8fa3b9;    
+            --bg-principal: #0c1220;    /* Azul profundo: reduz a fadiga visual */
+            --bg-card: #162033;         /* Fundo dos blocos: gera forte contraste com o texto */
+            --bg-card-hover: #1c2942;   /* Destaque sutil para feedback visual */
+            --dourado-titulo: #debc7a;  /* Cor clássica do jogo com excelente legibilidade */
+            --dourado-secondary: #f3d8a2;
+            --texto-claro: #f4f6f9;     /* Texto principal claro (Acessibilidade WCAG) */
+            --texto-mutado: #8fa3b9;    /* Texto de apoio */
             --borda: #253552;
 
-            /* Cores dos Elementos */
-            --anemo: #73f5ff; --geo: #ffe680;
+            /* Cores Oficiais dos Elementos */
+            --pyro: #ff6b6b; --hydro: #4cc9ff; --anemo: #73f5ff; 
+            --electro: #e085ff; --dendro: #a3ff85; --cryo: #9cf5ff; --geo: #ffe680;
         }
 
         /* ==========================================================================
-           2. RESET E EVITAÇÃO DE BUGS VISUAIS
+           2. RESET E EVITAÇÃO DE BUGS DE LAYOUT
            ========================================================================== */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; 
+            box-sizing: border-box; /* Evita que paddings/bordas estourem a largura da tela */
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-principal);
             color: var(--texto-claro);
-            line-height: 1.6;
-            overflow-x: hidden; 
+            line-height: 1.6; /* Espaçamento tipográfico ideal para leitura confortável */
+            overflow-x: hidden; /* Elimina bugs de rolagem horizontal em smartphones */
+        }
+
+        /* Links com transição suave */
+        a {
+            color: var(--dourado-titulo);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--dourado-secondary);
+            text-decoration: underline;
         }
 
         /* ==========================================================================
-           3. ESTRUTURA DO LAYOUT RESPONSIVO
+           3. TIPOGRAFIA FLUIDA (Ajuste automático de tamanho conforme a tela)
+           ========================================================================== */
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem); /* Diminui no celular, cresce na TV/PC */
+            color: var(--dourado-titulo);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            color: var(--dourado-titulo);
+            border-bottom: 2px solid var(--dourado-titulo);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--dourado-titulo);
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            margin-bottom: 20px;
+        }
+
+        /* ==========================================================================
+           4. ESTRUTURA DO LAYOUT RESPONSIVO (Containers e Flexbox)
            ========================================================================== */
         header {
             background: linear-gradient(rgba(12, 18, 32, 0.75), var(--bg-principal)), 
                         url('https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20200427/2020042721081689567.png') no-repeat center center/cover;
-            min-height: 35vh;
+            min-height: 45vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -56,49 +101,88 @@
             border-bottom: 3px solid var(--dourado-titulo);
         }
 
-        h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            color: var(--dourado-titulo);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-        }
-
         .container {
             width: 100%;
-            max-width: 800px; /* Layout focado e centralizado para leitura */
+            max-width: 900px; /* Largura focada para melhorar a usabilidade e leitura */
             margin: 0 auto;
-            padding: 40px 20px; 
+            padding: 40px 20px; /* Margem de segurança para o conteúdo não colar na borda do celular */
         }
 
         section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
-        h2, h3 {
-            color: var(--dourado-titulo);
-            margin-bottom: 15px;
+        /* Nações - Lista com boa hierarquia visual */
+        ul { list-style: none; }
+        ul li {
+            background-color: var(--bg-card);
+            border-left: 4px solid var(--dourado-titulo);
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+        }
+        ul li strong { color: var(--dourado-titulo); }
+
+        /* ==========================================================================
+           5. CSS GRID AUTOMÁTICO (Cards de Elementos)
+           ========================================================================== */
+        .elementos-grid {
+            display: grid;
+            /* Reorganiza as colunas de forma automática dependendo do tamanho do dispositivo */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
         }
 
-        h2 {
-            font-size: clamp(1.4rem, 3vw, 2rem);
-            border-bottom: 2px solid var(--dourado-titulo);
-            padding-bottom: 8px;
-            display: inline-block;
+        .elemento-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            
+            /* INTERATIVIDADE (UX): Transição suave para microinterações */
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.25s ease, 
+                        background-color 0.25s ease;
+            cursor: pointer;
         }
 
-        h3 {
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        /* Efeitos visuais sutis ao interagir (Hover) */
+        .elemento-card:hover {
+            transform: translateY(-6px); /* Elevação suave */
+            border-color: var(--dourado-titulo);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 12px 20px rgba(222, 188, 122, 0.1);
         }
 
-        p {
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-            color: var(--texto-claro);
+        /* Aplicação das Cores de Contraste dos Elementos */
+        .pyro { color: var(--pyro); } .hydro { color: var(--hydro); }
+        .anemo { color: var(--anemo); } .electro { color: var(--electro); }
+        .dendro { color: var(--dendro); } .cryo { color: var(--cryo); }
+        .geo { color: var(--geo); }
+
+        /* ==========================================================================
+           6. DESIGN DE VÍDEO RESPONSIVO (Anti-Quebra de Tela)
+           ========================================================================== */
+        .video-wrapper {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        iframe {
+            width: 100%;             /* Se adapta ao tamanho de telas pequenas */
+            max-width: 650px;        /* Limita o crescimento em telas de computadores */
+            height: auto;
+            aspect-ratio: 16 / 9;    /* Mantém a proporção padrão do YouTube sem distorcer */
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
 
         /* ==========================================================================
-           4. SEÇÃO DE INTERAÇÃO (Baseada no seu modelo com melhorias de UX)
+           7. SEÇÃO DE INTERAÇÃO E VOTAÇÃO (UX Dinâmico e Acessível)
            ========================================================================== */
         .interacao-secao {
             background-color: var(--bg-card);
@@ -109,16 +193,15 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Flexbox Responsivo: Colunas no celular, Linha no computador */
+        /* Flexbox responsivo: Empilhado no celular (coluna), lado a lado no PC (linha) */
         .interacao-container {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             gap: 15px;
             justify-content: center;
             margin: 25px 0;
         }
 
-        /* Botões Estilizados com Feedback Visual (UX) */
         .interacao-container button {
             background-color: var(--bg-principal);
             color: var(--texto-claro);
@@ -128,7 +211,7 @@
             font-size: 1.05rem;
             font-weight: bold;
             cursor: pointer;
-            width: 100%; /* Ocupa tudo no celular para facilitar o clique com o polegar */
+            width: 100%; /* Facilita o clique com o polegar em smartphones */
             transition: all 0.25s ease;
             display: flex;
             align-items: center;
@@ -136,7 +219,7 @@
             gap: 8px;
         }
 
-        /* Microinterações sutis ao passar o mouse (Desktops) */
+        /* Feedback visual temático para os botões */
         #btn-gostei:hover {
             border-color: var(--anemo);
             color: var(--anemo);
@@ -151,50 +234,95 @@
             transform: translateY(-2px);
         }
 
-        /* Feedback de clique (Botão pressionado) */
         .interacao-container button:active {
-            transform: translateY(1px);
+            transform: translateY(1px); /* Efeito físico de clique */
         }
 
-        /* Alerta de feedback via JavaScript */
         #mensagem-alerta {
             font-size: 0.95rem;
             font-weight: 500;
             color: var(--dourado-titulo);
             margin-top: 15px;
-            min-height: 24px; /* Evita que o layout "pule" quando a mensagem surgir */
+            min-height: 24px; /* Evita que os blocos abaixo fiquem "pulando" quando o texto surgir */
         }
 
         /* ==========================================================================
-           5. MEDIA QUERIES (Responsividade Avançada)
+           8. RODAPÉ E REGRAS MICRO-RESPONSIVAS
            ========================================================================== */
+        footer {
+            background-color: #060911;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            color: var(--texto-mutado);
+            border-top: 1px solid var(--borda);
+        }
+
         @media (min-width: 576px) {
-            /* Em telas maiores que um celular pequeno, os botões ficam lado a lado */
             .interacao-container {
-                flex-direction: row;
+                flex-direction: row; /* Botões ficam paralelos em telas maiores */
             }
             .interacao-container button {
-                width: auto; /* Deixa o botão do tamanho do seu texto interno */
+                width: auto; /* Retorna ao tamanho padrão do conteúdo */
             }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 20px 15px; }
+            section { margin-bottom: 40px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header / Banner de Introdução -->
     <header>
         <h1>Genshin Impact</h1>
-        <p>Espaço de Interação da Comunidade de Viajantes</p>
+        <p>Prepare-se para explorar Teyvat, um mundo vasto cheio de vida e fluxos de energia elemental.</p>
     </header>
 
+    <!-- Conteúdo Principal Adaptável -->
     <div class="container">
         
-        <!-- Contexto Pedagógico (EM13CO15) -->
-        <section id="contexto">
-            <h2>Análise do Artefato (EM13CO15)</h2>
-            <p>Este sistema de votação analisa como os usuários interagem com ferramentas digitais na esfera do <strong>lazer</strong>. O design foi projetado para evitar barreiras: botões grandes para telas de toque, cores contrastantes para leitura ao ar livre e feedback imediato para que o usuário saiba que sua ação foi computada.</p>
+        <!-- Bloco 1: Análise Pedagógica da Interface (EM13CO15) -->
+        <section id="analise-ux">
+            <h2>Interação Humano-Computador (EM13CO15)</h2>
+            <p>Ao analisar este site como um <strong>artefato computacional</strong>, observamos como as esferas do lazer, estudo e trabalho se interconectam. Uma interface responsiva garante que o usuário consuma o conteúdo de forma idêntica e confortável seja jogando ou pesquisando (lazer), estudando mecânicas de programação (estudo), ou desenvolvendo profissionalmente sistemas web (trabalho).</p>
         </section>
 
-        <!-- SEÇÃO INTERATIVA RESPONSIVA (Igual à sua estrutura, adaptada ao tema) -->
+        <!-- Bloco 2: Sobre o Jogo -->
+        <section id="sobre">
+            <h2>Sobre o Jogo</h2>
+            <p>Genshin Impact é um RPG de ação de mundo aberto desenvolvido pela miHoYo (HoYoverse). No jogo, você assume o papel do "Viajante", que acorda em um mundo desconhecido chamado Teyvat após ser separado de seu irmão gêmeo. Para reencontrá-lo, você deve dominar os elementos e buscar respostas junto aos Deuses de cada nação (os Arcontes).</p>
+        </section>
+
+        <!-- Bloco 3: Elementos com CSS Grid de Micro-interações -->
+        <section id="elementos">
+            <h2>Os Elementos de Teyvat</h2>
+            <p>A jogabilidade gira em torno do combate e da exploração usando reações elementais. Passe o mouse ou toque nos blocos para conferir o feedback visual ativo:</p>
+            
+            <div class="elementos-grid">
+                <div class="elemento-card"><h3 class="pyro">Pyro</h3><p>Fogo</p></div>
+                <div class="elemento-card"><h3 class="hydro">Hydro</h3><p>Água</p></div>
+                <div class="elemento-card"><h3 class="anemo">Anemo</h3><p>Vento</p></div>
+                <div class="elemento-card"><h3 class="electro">Electro</h3><p>Eletricidade</p></div>
+                <div class="elemento-card"><h3 class="dendro">Dendro</h3><p>Natureza</p></div>
+                <div class="elemento-card"><h3 class="cryo">Cryo</h3><p>Gelo</p></div>
+                <div class="elemento-card"><h3 class="geo">Geo</h3><p>Terra</p></div>
+            </div>
+        </section>
+
+        <!-- Bloco 4: Vídeo Responsivo Incorporado -->
+        <section id="video-trailer">
+            <h2>Assista ao Trailer</h2>
+            <p>Confira o visual impressionante e a jogabilidade de Genshin Impact no vídeo promocional abaixo:</p>
+            
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Z_Vll5FUxq8?si=jJW86EWEreB_ojp0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Bloco 5: SEÇÃO INTERATIVA E VOTAÇÃO (Inspirada no seu modelo) -->
         <section class="interacao-secao">
             <h3>Qual nação inicial de Teyvat mais te encantou?</h3>
             <p>Deixe o seu voto para medirmos a preferência da nossa comunidade de jogadores.</p>
@@ -208,52 +336,68 @@
                 </button>
             </div>
 
-            <!-- Alerta com acessibilidade digital -->
+            <!-- Parágrafo de alerta acessível por leitores de tela -->
             <p id="mensagem-alerta" role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- Bloco 6: Hierarquia Visual de Textos -->
+        <section id="nacoes">
+            <h2>Principais Nações Iniciais</h2>
+            <p>Sua jornada começa em duas grandes regiões vizinhas, cada uma inspirada em culturas do nosso próprio mundo:</p>
+            <ul>
+                <li><strong>Mondstadt:</strong> A cidade da liberdade e do vento, protegida pelo Arconte Anemo. Suas paisagens são inspiradas na Europa Central.</li>
+                <li><strong>Liyue:</strong> O próspero porto dos contratos e do comércio, que segue as tradições do Arconte Geo. Uma região ricamente inspirada na China clássica.</li>
+            </ul>
         </section>
 
     </div>
 
+    <!-- Rodapé -->
+    <footer>
+        <p>Página criada para fins de estudo sobre UX, Responsividade e a habilidade EM13CO15.</p>
+        <p>Visite o site oficial em <a href="https://genshin.hoyoverse.com" target="_blank">genshin.hoyoverse.com</a></p>
+    </footer>
+
     <!-- ==========================================================================
-       6. JAVASCRIPT: Lógica de Interação e Prevenção de Bugs
-       ========================================================================== -->
+       9. JAVASCRIPT: Lógica de Negócios e Prevenção de Bugs
+       ========================================================================== */ -->
     <script>
-        // Seleção dos elementos do HTML usando os IDs fornecidos
+        // Mapeando os elementos do documento HTML
         const btnGostei = document.getElementById('btn-gostei');
         const btnNaoGostei = document.getElementById('btn-nao-gostei');
         const contadorGostei = document.getElementById('contador-gostei');
         const contadorNaoGostei = document.getElementById('contador-nao-gostei');
         const mensagemAlerta = document.getElementById('mensagem-alerta');
 
-        // Variáveis de controle de votos
+        // Contadores internos de dados
         let votosMondstadt = 0;
         let votosLiyue = 0;
-        let usuarioJaVotou = false; // Impede o bug de votos infinitos pelo mesmo usuário
+        let usuarioJaVotou = false; // Solução de Bug: impede múltiplos envios pela mesma pessoa
 
-        // Função para processar o voto
-        function registrarVoto(tipo) {
+        // Função de disparo ao pressionar as interações
+        function registrarVoto(nacao) {
             if (usuarioJaVotou) {
                 mensagemAlerta.textContent = "Você já registrou sua resposta nesta sessão da guilda! ❌";
                 mensagemAlerta.style.color = "#ff6b6b";
                 return;
             }
 
-            if (tipo === 'mondstadt') {
+            if (nacao === 'mondstadt') {
                 votosMondstadt++;
                 contadorGostei.textContent = votosMondstadt;
                 mensagemAlerta.textContent = "Obrigado! Seu voto foi enviado para o Arconte Anemo. 🍃";
                 mensagemAlerta.style.color = "var(--anemo)";
-            } else if (tipo === 'liyue') {
+            } else if (nacao === 'liyue') {
                 votosLiyue++;
                 contadorNaoGostei.textContent = votosLiyue;
                 mensagemAlerta.textContent = "Contrato firmado! Seu voto foi enviado para o Arconte Geo. 🔶";
                 mensagemAlerta.style.color = "var(--geo)";
             }
 
-            usuarioJaVotou = true; // Bloqueia novos cliques
+            usuarioJaVotou = true; // Bloqueia a execução nas próximas tentativas
         }
 
-        // Ouvintes de eventos de clique nos botões
+        // Adicionando os escutadores de eventos para clique/toque
         btnGostei.addEventListener('click', () => registrarVoto('mondstadt'));
         btnNaoGostei.addEventListener('click', () => registrarVoto('liyue'));
     </script>
